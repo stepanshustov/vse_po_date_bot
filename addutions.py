@@ -117,7 +117,12 @@ def get_career(d: int, m: int, y: int, name: str):
     c = d // 10 + d % 10 + m // 10 + m % 10
     c += y % 10 + y // 10 % 10 + y // 100 % 10 + y // 1000
     i = rec_career(c)
+    ch = i + 1
+    if ch == 10:
+        ch = 11
     return convert_html(f"""<strong>{name}</strong> <strong>{d:02}.{m:02}.{y}</strong>
+Ваше число судьбы: {ch}
+    
 
 {career_list_txt[i]}
 - - - - - - - - - - - - - - &gt;&gt;&gt;
