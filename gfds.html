@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<!-- saved from url=(0062)file:///C:/Users/user/Downloads/Telegram%20Desktop/Matrix.html -->
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+    <meta name="viewport" content="width=device-width; initial-scale=1.0">
+    <title>Расчет матрицы</title>
+    <style>
+        /* Reset and base styles  */
+        * {
+            padding: 0px;
+            margin: 0px;
+            border: none;
+        }
+
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+        }
+        /* Links */
+        a, a:link, a:visited  {
+            text-decoration: none;
+        }
+        a:hover  {
+            text-decoration: none;
+        }
+        /* Common */
+        aside, nav, footer, header, section, main {
+            display: block;
+        }
+        h1, h2, h3, h4, h5, h6, p {
+            font-size: inherit;
+            font-weight: inherit;
+        }
+        ul, ul li {
+            list-style: none;
+        }
+        img {
+            vertical-align: top;
+        }
+        img, svg {
+            max-width: 100%;
+            height: auto;
+        }
+
+        address {
+        font-style: normal;
+        }
+        /* Form */
+        input, textarea, button, select {
+            font-family: inherit;
+            font-size: inherit;
+            color: inherit;
+            background-color: transparent;
+        }
+        input::-ms-clear {
+            display: none;
+        }
+        button, input[type="submit"] {
+            display: inline-block;
+            box-shadow: none;
+            background-color: transparent;
+            background: none;
+            cursor: pointer;
+        }
+        input:focus, input:active,
+        button:focus, button:active {
+            outline: none;
+        }
+        button::-moz-focus-inner {
+            padding: 0;
+            border: 0;
+        }
+        label {
+            cursor: pointer;
+        }
+        legend {
+            display: block;
+        }
+
+
+        #matrix-num {
+          display: flex;
+          flex-direction:column;
+          align-items: center;
+          justify-content: center;
+          margin: 0 auto;
+          border-spacing: 15px;
+          text-align: center;
+          width: 100%;
+        }
+        #date-birthday {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+        }
+        .in-data {
+            justify-content: center;
+        }
+        .in-num{
+            margin-right: 5px;
+            margin-top: 5px;
+            padding: 3px;
+            border:  1px solid black;
+            border-radius: 2px;
+        }
+        .row-matrix {
+          text-align: center;
+          display: flex;
+          flex-direction: row;
+
+        }
+        .row-matrix p{
+            padding-top: 3px;
+            font-size: 12px;
+        }
+        .cell-matrix {
+          background-color: #FAF0E6;
+          justify-content: center;
+          text-align: center;
+          width: 80px;
+          height: 80px;
+          margin-right: 5px;
+          margin-top: 5px;
+          box-shadow: 2px 2px 3px rgb(166, 166, 166);
+        }
+        .cell-matrix-adv {
+          background-color: #FFE4E1;
+          justify-content: center;
+          text-align: center;
+          width: 80px;
+          height: 80px;
+          margin-right: 5px;
+          margin-top: 5px;
+          box-shadow: 2px 2px 3px rgb(166, 166, 166);
+        }
+        .cell-matrix-empt {
+          justify-content: center;
+          text-align: center;
+          width: 80px;
+          height: 80px;
+          margin-right: 5px;
+          margin-top: 5px;
+        }
+        .matrix-val{
+            margin-top: 20px;
+        }
+        .but-calc{
+            display: flex;
+            justify-content: center;
+            margin-top: 30px;
+        }
+        .element_class{
+            cursor: pointer;
+            background-color:Gainsboro;
+            text-align: center;
+            width: 100px;
+            height: 40px;
+            padding-top: 10px;
+            border-radius: 5px;box-shadow: 2px 2px 2px rgb(166, 166, 166);
+        }
+
+    </style>
+</head>
+<body>
+
+
+<section id="matrix-pif">
+    <h2 style="text-align: center; font-size: 24px; font-style: bold;">Введите дату рождения</h2>
+    <div id="date-birthday">
+        <div id="date-day" class="in-data"><input id="in-day" style="width: 60px;" class="in-num" title="Day"
+                                                  placeholder="День"></div>
+        <div id="date-month" class="in-data"><input id="in-month" style="width: 60px;" class="in-num" title="Month"
+                                                    placeholder="Месяц"></div>
+        <div id="date-year" class="in-data"><input id="in-year" style="width: 90px;" class="in-num" title="Year"
+                                                   placeholder="Год"></div>
+    </div>
+    <div class="but-calc" onclick="">
+        <p class="element_class" onclick="" id="btnc">Расчитать</p>
+    </div>
+
+    <h3 style="text-align: center; font-size: 18px; font-style: bold; margin: 10px;">Матрица</h3>
+    <div id="matrix-num">
+
+        <div class="row-matrix">
+            <div class="cell-matrix-empt"><p></p>
+                <div class="matrix-val"></div>
+            </div>
+            <div class="cell-matrix-empt"><p></p>
+                <div class="matrix-val"></div>
+            </div>
+            <div class="cell-matrix-empt"><p></p>
+                <div class="matrix-val"></div>
+            </div>
+            <div class="cell-matrix"><p>Темперамент</p>
+                <div id="matrix-temperament" class="matrix-val"></div>
+            </div>
+        </div>
+
+        <div class="row-matrix">
+            <div class="cell-matrix"><p>Характер</p>
+                <div id="matrix-character" class="matrix-val"></div>
+            </div>
+            <div class="cell-matrix"><p>Здоровье</p>
+                <div id="matrix-health" class="matrix-val"></div>
+            </div>
+            <div class="cell-matrix"><p>Удача</p>
+                <div id="matrix-luck" class="matrix-val"></div>
+            </div>
+            <div class="cell-matrix"><p>Цель</p>
+                <div id="matrix-target" class="matrix-val"></div>
+            </div>
+        </div>
+        <div class="row-matrix">
+            <div class="cell-matrix"><p>Энергия</p>
+                <div id="matrix-energy" class="matrix-val"></div>
+            </div>
+            <div class="cell-matrix"><p>Логика</p>
+                <div id="matrix-logic" class="matrix-val"></div>
+            </div>
+            <div class="cell-matrix"><p>Долг</p>
+                <div id="matrix-duty" class="matrix-val"></div>
+            </div>
+            <div class="cell-matrix"><p>Семья</p>
+                <div id="matrix-family" class="matrix-val"></div>
+            </div>
+        </div>
+        <div class="row-matrix">
+            <div class="cell-matrix"><p>Интерес</p>
+                <div id="matrix-interest" class="matrix-val"></div>
+            </div>
+            <div class="cell-matrix"><p>Труд</p>
+                <div id="matrix-labor" class="matrix-val"></div>
+            </div>
+            <div class="cell-matrix"><p>Память</p>
+                <div id="matrix-memory" class="matrix-val"></div>
+            </div>
+            <div class="cell-matrix"><p>Привычки</p>
+                <div id="matrix-habits" class="matrix-val"></div>
+            </div>
+        </div>
+        <div class="row-matrix">
+            <div class="cell-matrix-empt"><p></p>
+                <div class="matrix-val"></div>
+            </div>
+            <div class="cell-matrix"><p>Быт</p>
+                <div id="matrix-everyday" class="matrix-val"></div>
+            </div>
+            <div class="cell-matrix-empt"><p></p>
+                <div class="matrix-val"></div>
+            </div>
+            <div class="cell-matrix-empt"><p></p>
+                <div class="matrix-val"></div>
+            </div>
+
+        </div>
+    </div>
+
+</section>
+<script>
+    // First we check if you support touch, otherwise it's click:
+/*         var touchEvent = 'ontouchstart' in window ? 'touchstart' : 'click';
+    var btn = document.querySelector("#btnc");
+    btn.addEventListener(touchEvent, function() {
+        calc();
+    }); */
+
+    var deviceAgent = navigator.userAgent.toLowerCase();
+    agentID = deviceAgent.match(/(iphone|ipod|ipad)/);
+    var touchMenuEvent  = agentID ? "touchstart" : "click";
+    var btn = document.querySelector("#btnc");
+    btn.addEventListener(touchMenuEvent, function() {
+        calc();
+    });
+
+
+    function count(str, symb) {
+        var counter = 0;
+        for (var char of str) {
+            if (char === symb) {
+            counter++;
+            }
+        }
+        return counter;
+    }
+
+    function calc(){
+        var number1 = 0;
+        var number2 = 0;
+        var number3 = 0;
+        var number4 = 0;
+        var sum_num1 = 0;
+        var sum_num2 = 0;
+        var sum_num4 = 0;
+        var number_tmp = 0;
+        var num_string = "";
+
+        var inday = Number(document.getElementById("in-day").value);
+        if(inday > 31|| inday < 1){
+            document.getElementById("in-day").style.color = "red";
+            return 0;
+        } else{
+            document.getElementById("in-day").style.color = "black";
+        }
+        var inmonth = Number(document.getElementById("in-month").value);
+        if(inmonth > 12|| inmonth < 1){
+            document.getElementById("in-month").style.color = "red";
+            return 0;
+        } else{
+            document.getElementById("in-month").style.color = "black";
+        }
+        var inyear = Number(document.getElementById("in-year").value);
+        if(inyear < 1){
+            document.getElementById("in-year").style.color = "red";
+            return 0;
+        } else{
+            document.getElementById("in-year").style.color = "black";
+        }
+        var number1_tmp1 = inday;
+        var number1_tmp2 = inmonth;
+        var number1_tmp3 = inyear;
+        var number4_tmp = 0;
+        if((Math.floor(inday/10)) >0){
+            var number_tmp = Math.floor(inday/10) * 2;
+        } else{
+            var number_tmp = inday * 2;
+        }
+        while(number1_tmp1 > 0){
+            var digit = number1_tmp1 % 10;
+             sum_num1 =sum_num1 + digit;
+             number1_tmp1 = Math.floor(number1_tmp1/10);
+        }
+        while(number1_tmp2 > 0){
+            var digit = number1_tmp2 % 10;
+             sum_num1 =sum_num1 + digit;
+             number1_tmp2 = Math.floor(number1_tmp2/10);
+        }
+        while(number1_tmp3 > 0){
+            var digit = number1_tmp3 % 10;
+             sum_num1 =sum_num1 + digit;
+             number1_tmp3 = Math.floor(number1_tmp3/10);
+        }
+        number1 = sum_num1;
+        while(sum_num1>0){
+            var digit = sum_num1 % 10;
+            sum_num2 =sum_num2 + digit;
+            sum_num1 = Math.floor(sum_num1/10);
+        }
+        number2 = sum_num2;
+        number3 = number1 - number_tmp;
+        number4_tmp = number3;
+        while(number4_tmp>0){
+            var digit = number4_tmp % 10;
+            sum_num4 =sum_num4 + digit;
+            number4_tmp = Math.floor(number4_tmp/10);
+        }
+        number4 = sum_num4;
+        num_string = "" + inday + inmonth + inyear + number1 + number2 + number3 + number4;
+        var num_count;
+        var matrix="";
+        num_count1 = count(num_string,"1");
+        if(num_count1 > 0){
+            for(i = 0; i < num_count1; i++ ){
+            matrix = matrix + "1";
+            document.getElementById("matrix-character").innerHTML = matrix;
+            }
+        } else {
+            document.getElementById("matrix-character").innerHTML = "нет";
+        }
+        num_count2 = count(num_string,"2");
+        matrix = "";
+        if(num_count2 > 0){
+            for(i = 0; i < num_count2; i++ ){
+            matrix = matrix + "2";
+            document.getElementById("matrix-energy").innerHTML = matrix;
+            }
+        } else {
+            document.getElementById("matrix-energy").innerHTML = "нет";
+        }
+        num_count3 = count(num_string,"3");
+        matrix = "";
+        if(num_count3 > 0){
+            for(i = 0; i < num_count3; i++ ){
+            matrix = matrix + "3";
+            document.getElementById("matrix-interest").innerHTML = matrix;
+            }
+        } else {
+            document.getElementById("matrix-interest").innerHTML = "нет";
+        }
+        num_count4 = count(num_string,"4");
+        matrix = "";
+        if(num_count4 > 0){
+            for(i = 0; i < num_count4; i++ ){
+            matrix = matrix + "4";
+            document.getElementById("matrix-health").innerHTML = matrix;
+            }
+        } else {
+            document.getElementById("matrix-health").innerHTML = "нет";
+        }
+        num_count5 = count(num_string,"5");
+        matrix = "";
+        if(num_count5 > 0){
+            for(i = 0; i < num_count5; i++ ){
+            matrix = matrix + "5";
+            document.getElementById("matrix-logic").innerHTML = matrix;
+            }
+        } else {
+            document.getElementById("matrix-logic").innerHTML = "нет";
+        }
+        num_count6 = count(num_string,"6");
+        matrix = "";
+        if(num_count6 > 0){
+            for(i = 0; i < num_count6; i++ ){
+            matrix = matrix + "6";
+            document.getElementById("matrix-labor").innerHTML = matrix;
+            }
+        } else {
+            document.getElementById("matrix-labor").innerHTML = "нет";
+        }
+        num_count7 = count(num_string,"7");
+        matrix = "";
+        if(num_count7 > 0){
+            for(i = 0; i < num_count7; i++ ){
+            matrix = matrix + "7";
+            document.getElementById("matrix-luck").innerHTML = matrix;
+            }
+        } else {
+            document.getElementById("matrix-luck").innerHTML = "нет";
+        }
+        num_count8 = count(num_string,"8");
+        matrix = "";
+        if(num_count8 > 0){
+            for(i = 0; i < num_count8; i++ ){
+            matrix = matrix + "8";
+            document.getElementById("matrix-duty").innerHTML = matrix;
+            }
+        } else {
+            document.getElementById("matrix-duty").innerHTML = "нет";
+        }
+        num_count9 = count(num_string,"9");
+        matrix = "";
+        if(num_count9 > 0){
+            for(i = 0; i < num_count9; i++ ){
+            matrix = matrix + "9";
+            document.getElementById("matrix-memory").innerHTML = matrix;
+            }
+        } else {
+            document.getElementById("matrix-memory").innerHTML = "нет";
+        }
+
+        numTemper = num_count3 + num_count5 + num_count7;
+        if(numTemper > 0){
+            document.getElementById("matrix-temperament").innerHTML = numTemper;
+        } else {
+            document.getElementById("matrix-temperament").innerHTML = "нет";
+        }
+        numTarget = num_count1 + num_count4 + num_count7;
+        if(numTarget > 0){
+            document.getElementById("matrix-target").innerHTML = numTarget;
+        } else {
+            document.getElementById("matrix-target").innerHTML = "нет";
+        }
+        numFamily = num_count2 + num_count5 + num_count8;
+        if(numFamily > 0){
+            document.getElementById("matrix-family").innerHTML = numFamily;
+        } else {
+            document.getElementById("matrix-family").innerHTML = "нет";
+        }
+        numHabits = num_count3 + num_count6 + num_count9;
+        if(numHabits > 0){
+            document.getElementById("matrix-habits").innerHTML = numHabits;
+        } else {
+            document.getElementById("matrix-habits").innerHTML = "нет";
+        }
+        numEveryday = num_count4 + num_count5 + num_count6;
+        if(numEveryday > 0){
+            document.getElementById("matrix-everyday").innerHTML = numEveryday;
+        } else {
+            document.getElementById("matrix-everyday").innerHTML = "нет";
+        }
+    }
+</script>
+
+
+</body>
+</html>
